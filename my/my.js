@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', event => {
 			request: 0x01,
 			value: 0x0100,
 			index: 0x00})) // Ready to receive data
-		.then(() => device.transferIn(5, 64)) // Waiting for 64 bytes of data from endpoint #5.
+		.then(() => device.transferOut(4, 'KLJDSCKLSCNKLSCJNKLSCN')) // Waiting for 64 bytes of data from endpoint #5.
 		.then(result => {
 		  let decoder = new TextDecoder();
 		  console.log('Received: ' + decoder.decode(result.data));
