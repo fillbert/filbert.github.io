@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', event => {
 			requestType: 'vendor',
 			recipient: 'device',
 			request: 0x01,
-			value: 0x0100,
+			value: 0x0101,
 			index: 0x00})) // Ready to receive data
 		.then(() => device.transferOut(4, 'KLJDSCKLSCNKLSCJNKLSCN')) // Waiting for 64 bytes of data from endpoint #5.
 		.then(result => {
