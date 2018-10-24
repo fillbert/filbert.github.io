@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
 
 	function connect (){
-		navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }] })
+		navigator.usb.requestDevice({ filters: [{ vendorId: 0x0403 }] })
 		.then(selectedDevice => {
 		   device = selectedDevice;
 		   return device.open(); // Begin a session.
