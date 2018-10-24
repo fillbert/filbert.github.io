@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', event => {
 		.then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
 		.then(() => device.claimInterface(1)) // Request exclusive control over interface #2.
 		.then(() => device.controlTransferOut({
-			requestType: 'vendoe',
+			requestType: 'vendor',
 			recipient: 'device',
 			request: 0x01,
 			value: 0x0100,
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
 	 connectButton.addEventListener('click', function() {
         connectButton.textContent = 'Connect';
-        statusDisplay.textContent = '';;
+        statusDisplay.textContent = 'ZALUPA';
         connect();
 		});
 	});
