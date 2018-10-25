@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', event => {
 
 
 	function connect (){
-		device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }]});
-		console.log(errdevice);
+		device = await navigator.usb.requestDevice({ filters: [{
+        vendorId: 0x0483
+    }]});
 		//navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }] })
 		//.then(selectedDevice => {
 		//   device = selectedDevice;
