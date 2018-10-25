@@ -11,25 +11,27 @@ document.addEventListener('DOMContentLoaded', event => {
 
 
 	function connect (){
-		navigator.usb.requestDevice({ filters: [{ vendorId: 0x0403 }] })
-		.then(selectedDevice => {
-		   device = selectedDevice;
-		   return device.open(); // Begin a session.
-		 })
-		.then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
-		.then(() => device.claimInterface(2)) // Request exclusive control over interface #2.
-		.then(() => device.controlTransferOut({
-			requestType: 'vendor',
-			recipient: 'device',
-			request: 0x01,
-			value: 0x0101,
-			index: 0x00})) // Ready to receive data
-		.then(() => device.transferOut(4, 'KLJDSCKLSCNKLSCJNKLSCN')) // Waiting for 64 bytes of data from endpoint #5.
-		.then(result => {
-		  let decoder = new TextDecoder();
-		  console.log('Received: ' + decoder.decode(result.data));
-		})
-		.catch(error => { console.log(error); });
+		device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }]});
+		console.log(errdevice);
+		//navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }] })
+		//.then(selectedDevice => {
+		//   device = selectedDevice;
+		//   return device.open(); // Begin a session.
+		// })
+		//.then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
+		//.then(() => device.claimInterface(2)) // Request exclusive control over interface #2.
+		//.then(() => device.controlTransferOut({
+		//	requestType: 'vendor',
+		//	recipient: 'device',
+		//	request: 0x01,
+		//	value: 0x0101,
+		//	index: 0x00})) // Ready to receive data
+		//.then(() => device.transferOut(4, 'KLJDSCKLSCNKLSCJNKLSCN')) // Waiting for 64 bytes of data from endpoint #5.
+		//.then(result => {
+		//  let decoder = new TextDecoder();
+		//  console.log('Received: ' + decoder.decode(result.data));
+		//})
+		//.catch(error => { console.log(error); });
 	}
 
 
