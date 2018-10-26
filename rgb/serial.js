@@ -30,7 +30,8 @@ var serial = {};
 
   serial.Port.prototype.connect = function() {
     let readLoop = () => {
-      this.device_.transferIn(2, 64).then(result => {
+		console.log('ZALUPA');
+      this.device_.transferOut(3, Uint8Array.from( ascii('ascasxaxs'))).then(result => {
         //this.onReceive(result.data);
 		console.log('Got: ' + result.data);
         readLoop();
