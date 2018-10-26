@@ -30,11 +30,13 @@ var serial = {};
 
   serial.Port.prototype.connect = function() {
     let readLoop = () => {
-      this.device_.transferIn(5, 64).then(result => {
-        this.onReceive(result.data);
+      this.device_.transferIn(2, 64).then(result => {
+        //this.onReceive(result.data);
+		console.log('Got: ' + result.data);
         readLoop();
       }, error => {
-        this.onReceiveError(error);
+		console.log('errMSG: ' + error);
+        //this.onReceiveError(error);
       });
     };
 
@@ -44,7 +46,7 @@ var serial = {};
             return this.device_.selectConfiguration(1);
           }
         })
-        .then(() => this.device_.claimInterface(1))
+        .then(() => this.device_.claimInterface(0))
         //.then(() => this.device_.selectAlternateInterface(2, 0))
         .then(() => this.device_.controlTransferOut({
             'requestType': 'class',
