@@ -31,14 +31,14 @@ var serial = {};
   serial.Port.prototype.connect = function() {
     let readLoop = () => {
 		console.log('ZALUPA');
-      this.device_.transferOut(3, Uint8Array.from( ascii('ascasxaxs'))).then(result => {
+      //this.device_.transferOut(0, Uint8Array.from( '00000')).then(result => {
         //this.onReceive(result.data);
-		console.log('Got: ' + result.data);
-        readLoop();
-      }, error => {
-		console.log('errMSG: ' + error);
+	//	console.log('Got: ' + result.data);
+    //    readLoop();
+    //  }, error => {
+	//	console.log('errMSG: ' + error);
         //this.onReceiveError(error);
-      });
+    //  });
     };
 
     return this.device_.open()
@@ -48,12 +48,12 @@ var serial = {};
           }
         })
         .then(() => this.device_.claimInterface(0))
-        //.then(() => this.device_.selectAlternateInterface(2, 0))
+        //.then(() => this.device_.selectAlternateInterface(0, 0))
         .then(() => this.device_.controlTransferOut({
             'requestType': 'class',
             'recipient': 'interface',
             'request': 0x22,
-            'value': 0x01,
+            'value': 0x0003,
             'index': 0x00}))
         .then(() => {
           readLoop();
