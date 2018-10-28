@@ -31,14 +31,14 @@ var serial = {};
   serial.Port.prototype.connect = function() {
     let readLoop = () => {
 		console.log('ZALUPA');
-      //this.device_.transferOut(0, Uint8Array.from( '00000')).then(result => {
+      this.device_.transferOut(0, Uint8Array.from( '00000')).then(result => {
         //this.onReceive(result.data);
-	//	console.log('Got: ' + result.data);
-    //    readLoop();
-    //  }, error => {
-	//	console.log('errMSG: ' + error);
+		console.log('Got: ' + result.data);
+        //readLoop();
+      }, error => {
+		console.log('errMSG: ' + error);
         //this.onReceiveError(error);
-    //  });
+      });
     };
 
     return this.device_.open()
