@@ -49,12 +49,12 @@ var serial = {};
         })
         .then(() => this.device_.claimInterface(0))
         //.then(() => this.device_.selectAlternateInterface(0, 0))
-        .then(() => this.device_.controlTransferOut({
-            'requestType': 'class',
-            'recipient': 'interface',
-            'request': 0x22,
-            'value': 0x0003,
-            'index': 0x00}))
+        //.then(() => this.device_.controlTransferOut({
+        //    'requestType': 'class',
+        //    'recipient': 'interface',
+        //    'request': 0x22,
+        //    'value': 0x0003,
+        //    'index': 0x00}))
         .then(() => {
           readLoop();
         });
