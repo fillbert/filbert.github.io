@@ -47,7 +47,8 @@ var serial = {};
             return this.device_.selectConfiguration(1);
           }
         })
-        .then(() => this.device_.claimInterface(0))
+		.then(() => this.device_.selectConfiguration(1))
+        .then(() => this.device_.claimInterface(1))
         //.then(() => this.device_.selectAlternateInterface(0, 0))
         //.then(() => this.device_.controlTransferOut({
         //    'requestType': 'class',
