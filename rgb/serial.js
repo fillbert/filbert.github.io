@@ -3,6 +3,18 @@ var serial = {};
 (function() {
   'use strict';
 
+	  navigator.usb.addEventListener('connect', event => {
+	  console.log('Connected');
+	});
+
+	navigator.usb.addEventListener('disconnect', event => {
+	  console.log('Disconnected');
+	}); 
+  
+  
+  
+  
+  
   serial.getPorts = function() {
     return navigator.usb.getDevices().then(devices => {
       return devices.map(device => new serial.Port(device));
