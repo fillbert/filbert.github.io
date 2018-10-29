@@ -1,7 +1,11 @@
+
+var device;
+
+
 (function() {
   'use strict';
 
-var device;
+
 
 navigator.usb.addEventListener('connect', event => {
   console.log('Connected');
@@ -12,12 +16,32 @@ navigator.usb.addEventListener('disconnect', event => {
 }); 
 
 
+
+
 document.addEventListener('DOMContentLoaded', event => {
 	let connectButton = document.querySelector("#connect");
 	let statusDisplay = document.querySelector('#status');
 	
+	async function connect (){
+		await navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }] })
+		.then(selectedDevice => {
+		   device = selectedDevice;
+		 });
+		 await device.open();
+		 await device.selectConfiguration(1); 
+		 await device.claimInterface(0);
+		 device.controlTransferOut({
+			 requestType: 'vendor',
+			 recipient: 'device',
+			 request: 34,
+			 value: 0x0003,
+			 index: 0x00});
+		 //await device.claimInterface(1);
+		//await device.selectConfiguration(1); 
+		 //await device.transferOut(1, Uint8Array.from( '00000'));
+	}
 
-
+/*
 	function connect (){
 		navigator.usb.requestDevice({ filters: [{ vendorId: 0x0483 }] })
 		.then(selectedDevice => {
@@ -39,7 +63,7 @@ document.addEventListener('DOMContentLoaded', event => {
 		})
 		.catch(error => { console.log(error); });
 	}
-	
+*/	
 	function disconnect (){
 			return device.close();
 	}
